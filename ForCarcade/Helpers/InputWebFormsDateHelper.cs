@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ForCarcade.Helpers
 {
@@ -11,13 +12,9 @@ namespace ForCarcade.Helpers
             {
                 return DateTime.MinValue;
             }
-
-            var splittedValue = text.Split('-');
-            int year = int.Parse(splittedValue[0]);
-            int month = int.Parse(splittedValue[1]);
-            int day = int.Parse(splittedValue[2]);
-
-            DateTime date = new DateTime(year, month, day);
+            
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            DateTime date = DateTime.ParseExact(text,"yyyy-MM-dd", provider);
 
             return date;
         }
